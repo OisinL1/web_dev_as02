@@ -78,6 +78,34 @@
             minTempSaturdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[5]+ "°C";
             minTempSundayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[6]+ "°C";
 
+            let counter = 0;
+            document.querySelectorAll("[id^=wc-]").forEach(image => {
+                        //const cityName = image.id.replace('wc-','');
+                        const cityData = weatherData[currentCityValue + "_daily"]
+                        //console.log(counter);
+                        const weatherCode = cityData.daily.weather_code[counter];
+                        counter++;
+                        console.log(weatherCode);
+                        
+                        let imagePath;
+
+                        if (weatherCode === 1) {
+                            imagePath = "../images/sunblack.png";
+                        } else if (weatherCode >= 2 && weatherCode <= 2) {
+                            imagePath = "../images/sleet.png";
+                        } else if (weatherCode >= 3 && weatherCode <= 3) {
+                            imagePath = "../images/frost.png";
+                        } else if (weatherCode >= 61 && weatherCode <= 61) {
+                            imagePath = "../images/cloudy.png";
+                        }else {
+                                    imagePath = "../images/cloud_gust.png";
+                            }
+
+                        image.src = imagePath;
+
+
+                    });
+
         });
     </script>
 </head>
@@ -143,7 +171,7 @@
                         </header>
                         <div class="card-image">
                             <figure class="image is-20x20"> 
-                                <img src="../images/sunblack.png">
+                                <img id = "wc-monday" src="../images/sunblack.png">
                             </figure>
                          </div>
                     <div class="card-content has-text-white is-flex">               
@@ -161,7 +189,7 @@
                         </header>
                          <div class="card-image">
                             <figure class="image is-20x20"> 
-                                <img src="../images/sunblack.png">
+                                <img id = "wc-tuesday" src="../images/sunblack.png">
                             </figure>
                          </div>
                         <div class="card-content has-text-white is-flex">               
@@ -179,7 +207,7 @@
                         </header>
                         <div class="card-image">
                             <figure class="image is-20x20"> 
-                                <img src="../images/sunblack.png">
+                                <img id = "wc-wednesday" src="../images/sunblack.png">
                             </figure>
                          </div>
                         <div class="card-content has-text-white is-flex">               
@@ -197,7 +225,7 @@
                         </header>
                         <div class="card-image">
                             <figure class="image is-20x20"> 
-                                <img src="../images/sunblack.png">
+                                <img id = "wc-thursday" src="../images/sunblack.png">
                             </figure>
                         </div>
                         <div class="card-content has-text-white is-flex">               
@@ -215,7 +243,7 @@
                         </header>
                         <div class="card-image">
                             <figure class="image is-20x20"> 
-                                <img src="../images/sunblack.png">
+                                <img id = "wc-friday" src="../images/sunblack.png">
                             </figure>
                         </div>
                         <div class="card-content has-text-white is-flex">               
@@ -233,7 +261,7 @@
                         </header>
                         <div class="card-image">
                             <figure class="image is-20x20"> 
-                                <img src="../images/sunblack.png">
+                                <img id = "wc-saturday" src="../images/sunblack.png">
                             </figure>
                         </div>
                         <div class="card-content has-text-white is-flex">               
@@ -251,7 +279,7 @@
                         </header>
                         <div class="card-image">
                             <figure class="image is-20x20"> 
-                                <img src="../images/sunblack.png">
+                                <img id = "wc-sunday" src="../images/sunblack.png">
                             </figure>
                         </div>
                         <div class="card-content has-text-white is-flex">               

@@ -28,6 +28,31 @@
                 temperature_2m_min.innerHTML = currentCityData.daily.temperature_2m_min[0]+ "°C"; 
                 //weatherCode.innerHTML = currentCityData.daily.weather_code[0];
                  });
+
+                document.querySelectorAll("[id^=wc-]").forEach(image => {
+                        const cityName = image.id.replace('wc-','');
+                        const cityData = weatherData[cityName + "_daily"]
+                        const weatherCode = cityData.daily.weather_code[0];
+                        console.log(weatherCode);
+                        
+                        let imagePath;
+
+                        if (weatherCode === 1) {
+                            imagePath = "../images/sunblack.png";
+                        } else if (weatherCode >= 2 && weatherCode <= 2) {
+                            imagePath = "../images/sleet.png";
+                        } else if (weatherCode >= 3 && weatherCode <= 3) {
+                            imagePath = "../images/frost.png";
+                        } else if (weatherCode >= 61 && weatherCode <= 61) {
+                            imagePath = "../images/cloudy.png";
+                        }else {
+                                    imagePath = "../images/cloud_gust.png";
+                            }
+
+                        image.src = imagePath;
+
+
+                    });
             });
     </script>
 </head>
@@ -52,7 +77,7 @@
                             </header>
                             <div class="card-image">
                                 <figure class="image is-20x20"> 
-                                    <img src="../images/sunblack.png">
+                                    <img id = "wc-amsterdam" src="../images/sunblack.png">
                                 </figure>
                              </div>
                             <div class="card-content has-text-white is-flex">               
@@ -114,7 +139,7 @@
                             </header>
                             <div class="card-image">
                                 <figure class="image is-20x20"> 
-                                    <img src="../images/sunblack.png">
+                                    <img id = "wc-cork" src="../images/sunblack.png">
                                 </figure>
                              </div>
                             <div class="card-content has-text-white is-flex">               
@@ -134,7 +159,7 @@
                             </header>
                             <div class="card-image">
                                 <figure class="image is-20x20"> 
-                                    <img src="../images/sunblack.png">
+                                    <img id = "wc-paris" src="../images/sunblack.png">
                                 </figure>
                              </div>
                             <div class="card-content has-text-white is-flex">               
@@ -154,7 +179,7 @@
                             </header>
                             <div class="card-image">
                                 <figure class="image is-20x20"> 
-                                    <img src="../images/sunblack.png">
+                                    <img id = "wc-waterford" src="../images/sunblack.png">
                                 </figure>
                              </div>
                             <div class="card-content has-text-white is-flex">               
