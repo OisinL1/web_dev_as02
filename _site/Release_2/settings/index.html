@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="has-background-white" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <script src="../data/weather_data.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <style>
+        .is-family-sans-serif {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+    <script>
+
+            const cities = ["amsterdam", "berlin","copenhagen","cork","paris","waterford"]; 
+
+            // document.addEventListener("DOMContentLoaded", () => {
+            // //     // cities.forEach(city => {
+            // //     // const currentCity = city;
+            // //     // const currentCityData = weatherData[currentCity + "_daily"]
+            // //     // const time = document.getElementById("time");
+            // //     // //const weatherCode = document.getElementById("weatherCode");
+            // //     // const temperature_2m_max = document.getElementById("temperature_2m_max_"+ currentCity);
+            // //     // const temperature_2m_min = document.getElementById("temperature_2m_min_"+ currentCity);
+
+            // //     // //time.innerHTML = currentCityData.daily.time[0];
+            // //     // temperature_2m_max.innerHTML = currentCityData.daily.temperature_2m_max[0]+ "°C";
+            // //     // temperature_2m_min.innerHTML = currentCityData.daily.temperature_2m_min[0]+ "°C"; 
+            // //     // //weatherCode.innerHTML = currentCityData.daily.weather_code[0];
+            // //     //  });
+            // // });
+
+
+            document.addEventListener('DOMContentLoaded', () => {
+            const cities = ["amsterdam", "berlin","copenhagen","cork","paris","waterford"];
+            const main = document.querySelector('main');
+            // cities.forEach(city => {
+            //   main.innerHTML = main.innerHTML + dotify.components.createPlaylistItem(playlist);
+            // });
+            document.querySelectorAll("[id^=fave-]").forEach(checkbox => {
+              checkbox.addEventListener('click', (event)=> {
+                console.log(event.target);
+                console.log(event.target.id)
+                console.log(event.target.checked)
+                const cityName = event.target.id.replace('fave-','');
+                const isFavourite =  event.target.checked;
+                localStorage.setItem(cityName, isFavourite);
+              })
+            });
+            document.querySelectorAll("[id^=fave-]").forEach(checkbox => {
+                const cityName = checkbox.id.replace('fave-','');
+                const isFavourite = localStorage.getItem(cityName) === 'true';
+                checkbox.checked = isFavourite;
+              });
+            });
+
+            // document.querySelectorAll("[id^=fave-]").forEach(checkbox => {
+            //   checkbox.addEventListener('click', (event) => {
+            //     const cityName = event.target.id.replace('fave-','');
+            //     const isFavourite =  event.target.checked;
+            //     localStorage.setItem(playlistName, isFavourite);
+            //   })
+            // });
+
+
+    </script>
+</head>
+<body>
+    <main class="columns is-multiline box">
+
+        <div class="column is-3">
+            <figure class="image">
+                <img src="../images/logo.png"/>
+            </figure>
+        </div>
+        <div class="column is-6 is-offset-1 has-text-centered mt-3">
+             <!-- <h1 class="title is-1 has-text-centered mt-6 has-text-weight-bold">Dashboard</h1>
+             <p class="subtitle is-5 has-text-centered has-text-weight-bold">Today</p> -->
+
+
+            <nav class="navbar" role="navigation" aria-label="main navigation"> 
+                <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="index.html">
+                        <div class="column is-12 has-text-centered mt-3">
+                            <h1 class="title is-1 has-text-black has-text-centered mt-6 has-text-weight-bold">Dashboard</h1>
+        
+                        </div>
+                    </a>
+
+                    <a class="navbar-item" href = settings.html>
+                        <div class="column is-12 has-text-centered mt-3 has-text-blue">
+                            <h1 class="title is-1 has-text-blue has-text-centered mt-6 has-text-weight-bold" style="color: blue;">Settings</h1>
+                                <p class="subtitle is-5 has-text-centered has-text-weight-bold"></p>
+
+                        </div>
+                    </a>
+                    <div class="navbar-end">
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <container class="hero is-info is-centered mt-6">
+            <div class="hero-body mr-6 mr-6">
+                <div class="columns is-multiline">
+                    <div class="column is-12  has-text-left"> 
+                        <div class="column is-one-half">
+                            <div class="field ">
+                                <input id="fave-Amsterdam" type="checkbox"  class="switch ">
+                                <label>Amsterdam</label>
+                            </div>
+                            <div class="field ">
+                                <input id="fave-Berlin" type="checkbox"  class="switch ">
+                                <label>Berlin</label>
+                            </div>
+                        <div class="field ">
+                            <input id="fave-Copenhagen" type="checkbox"  class="switch ">
+                            <label>Copenhagen</label>
+                        </div>
+                        <div class="field">
+                            <input id="fave-Cork" type="checkbox"  class="switch">
+                            <label>Cork</label>
+                        </div>
+                        <div class="field">
+                            <input id="fave-Paris" type="checkbox" class="switch">
+                            <label>Paris</label>
+                        </div>
+                        <div class="field">
+                            <input id="fave-Waterford" type="checkbox" class="switch">
+                            <label>Waterford</label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+             </div>
+        </container>
+        
+
+        
+         
+
+
+    </main>
+</body>
+</html>

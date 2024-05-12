@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="has-background-white" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release-1</title>
+    <script src="../data/weather_data.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <style>
+        .is-family-sans-serif {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+    <script>
+            
+            document.addEventListener("DOMContentLoaded", () => {
+                const cities = ["amsterdam", "berlin","copenhagen","cork","paris","waterford"]; 
+                cities.forEach(city => {
+                const currentCity = city;
+                const currentCityData = weatherData[currentCity + "_daily"]
+                const time = document.getElementById("time");
+                //const weatherCode = document.getElementById("weatherCode");
+                const temperature_2m_max = document.getElementById("temperature_2m_max_"+ currentCity);
+                const temperature_2m_min = document.getElementById("temperature_2m_min_"+ currentCity);
+
+                //time.innerHTML = currentCityData.daily.time[0];
+                temperature_2m_max.innerHTML = currentCityData.daily.temperature_2m_max[0]+ "°C";
+                temperature_2m_min.innerHTML = currentCityData.daily.temperature_2m_min[0]+ "°C"; 
+                //weatherCode.innerHTML = currentCityData.daily.weather_code[0];
+                 });
+            });
+    </script>
+</head>
+<body>
+    <main class="columns is-multiline box">
+        <div class="column is-3">
+            <figure class="image">
+                <img src="../images/logo.png"/>
+            </figure>
+        </div>
+        <div class="column is-6 has-text-centered has-text-black mt-3">
+             <h1 class="title is-1 has-text-black has-text-centered mt-6 has-text-weight-bold">Dashboard</h1>
+             <p class="subtitle is-5 has-text-black has-text-centered has-text-weight-bold">Today</p>
+        </div>
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-one-quarter">
+                    <a href=city_focus.html?city=amsterdam>
+                        <section class="card has-text-centered has-background-black">
+                            <header class="card-header has-text-white">
+                                <p class="card-header-title is-centered has-text-white">Amsterdam </p>
+                            </header>
+                            <div class="card-image">
+                                <figure class="image is-20x20"> 
+                                    <img src="../images/sunblack.png">
+                                </figure>
+                             </div>
+                            <div class="card-content has-text-white is-flex">               
+                                <p  class= "is-flex-grow-1 has-text-left"><span id="temperature_2m_min_amsterdam"></p> 
+                                <p  class="has-text-right ml-4"><span id="temperature_2m_max_amsterdam"></span></p>                               
+                            </div>
+                            <footer class="card-footer">
+                            </footer>
+                        </section>
+                    </a>
+                </div>
+                <div class="column is-one-quarter">
+                    <a href=city_focus.html?city=berlin>
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Berlin</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img src="../images/sunblack.png">
+                            </figure>
+                         </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="temperature_2m_min_berlin"></p> 
+                            <p  class="has-text-right ml-4"><span id="temperature_2m_max_berlin"></span></p>                               
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </a>
+                </div>
+                <div class="column is-one-quarter">
+                <a href=city_focus.html?city=copenhagen>
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Copenhagen</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img src="../images/sunblack.png">
+                            </figure>
+                         </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="temperature_2m_min_copenhagen"></span></p> 
+                            <p class="has-text-right ml-4"> <span id="temperature_2m_max_copenhagen"></span></p>                               
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </a>
+                </div>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-one-quarter">
+                    <a href=city_focus.html?city=cork>
+                        <section class="card has-text-centered has-background-black">
+                            <header class="card-header has-text-white">
+                                <p class="card-header-title is-centered has-text-white"> Cork</p>
+                            </header>
+                            <div class="card-image">
+                                <figure class="image is-20x20"> 
+                                    <img src="../images/sunblack.png">
+                                </figure>
+                             </div>
+                            <div class="card-content has-text-white is-flex">               
+                                <p class= "is-flex-grow-1 has-text-left"><span id="temperature_2m_min_cork"></span></p> 
+                                <p class="has-text-right ml-4"><span id="temperature_2m_max_cork"></span></p>                               
+                            </div>
+                            <footer class="card-footer">
+                            </footer>
+                        </section>
+                    </a>
+                </div>
+                <div class="column is-one-quarter">
+                    <a href=city_focus.html?city=paris>
+                        <section class="card has-text-centered has-background-black">
+                            <header class="card-header has-text-white">
+                                <p class="card-header-title is-centered has-text-white">Paris</p>
+                            </header>
+                            <div class="card-image">
+                                <figure class="image is-20x20"> 
+                                    <img src="../images/sunblack.png">
+                                </figure>
+                             </div>
+                            <div class="card-content has-text-white is-flex">               
+                                <p class= "is-flex-grow-1 has-text-left"><span id="temperature_2m_min_paris"></span></p> 
+                                <p class="has-text-right ml-4"><span id="temperature_2m_max_paris"></span></p>                               
+                            </div>
+                            <footer class="card-footer">
+                            </footer>
+                        </section>
+                    </a>
+                </div>
+                <div class="column is-one-quarter">
+                    <a href=city_focus.html?city=waterford>
+                        <section class="card has-text-centered has-background-black">
+                            <header class="card-header has-text-white">
+                                <p class="card-header-title is-centered has-text-white"> Waterford</p>
+                            </header>
+                            <div class="card-image">
+                                <figure class="image is-20x20"> 
+                                    <img src="../images/sunblack.png">
+                                </figure>
+                             </div>
+                            <div class="card-content has-text-white is-flex">               
+                                <p class= "is-flex-grow-1 has-text-left"><span id="temperature_2m_min_waterford"></span></p> 
+                                <p class="has-text-right ml-4"><span id="temperature_2m_max_waterford"></span></p>                               
+                            </div>
+                            <footer class="card-footer">
+                            </footer>
+                        </section>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        
+         
+
+
+    </main>
+    <!--p>The time is <span id="time"></span></p>
+    <p>The weather code is <span id="weatherCode"></span></p-->
+</body>
+</html>

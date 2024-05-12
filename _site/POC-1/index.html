@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html class="has-background-white" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POC-1</title>
+    <script src="../data/weather_data.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <style>
+        .is-family-sans-serif {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentCity = "amsterdam";
+            const currentCityData = weatherData[currentCity + "_daily"]
+            const time = document.getElementById("time");
+            const weatherCode = document.getElementById("weatherCode");
+
+            time.innerHTML = currentCityData.daily.time[0];
+            weatherCode.innerHTML = currentCityData.daily.weather_code[0];
+        });
+    </script>
+</head>
+<body>
+    <main class="columns is-multiline box">
+        <div class="column is-3">
+            <figure class="image">
+                <img src="../images/logo.png"/>
+            </figure>
+        </div>
+        <div class="column is-6 has-text-centered has-text-black">
+             <h1 class="title is-1 has-text-black has-text-centered mt-6 has-text-weight-bold">Berlin</h1>
+             <p class="subtitle is-5 has-text-black has-text-centered has-text-weight-bold">Today</p>
+        </div>
+        <div class="column is-4">
+            <figure class="image">
+                <img src="../images/sun.png" class="is-50x50"/>
+            </figure>
+        </div>
+        <div class="column is-3 mt-6">
+            <section class="card has-text-centered has-background-black">
+              <header class="card-header has-text-white">
+                <p class="card-header-title is-centered has-text-white"> Max Temp</p>
+              </header>
+              <div class="card-content has-text-white">
+                <p> 12°C </p>
+              </div>
+              <footer class="card-footer">
+              </footer>
+            </section>
+         </div>
+         <div class="column is-3 mt-6">
+            <section class="card has-text-centered has-background-black">
+              <header class="card-header has-text-white">
+                <p class="card-header-title is-centered has-text-white"> Max Wind</p>
+              </header>
+              <div class="card-content has-text-white">
+                <p> 15 km/h </p>
+              </div>
+              <footer class="card-footer">
+              </footer>
+            </section>
+         </div>
+
+
+    </main>
+    <!--p>The time is <span id="time"></span></p>
+    <p>The weather code is <span id="weatherCode"></span></p-->
+</body>
+</html>

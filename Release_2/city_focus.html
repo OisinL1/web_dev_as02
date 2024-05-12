@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="has-background-white" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>city_focus</title>
+    <script src="../data/weather_data.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <style>
+        .is-family-sans-serif {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentCityValue = urlParams.get('city');
+            //const currentCity = city;
+            //const currentCityData = weatherData[currentCityValue + "_daily"]
+            const time = document.getElementById("time");
+            const weatherCode = document.getElementById("weatherCode");
+            const currentCity = document.getElementById("currentCity");
+
+            const currentTempHourly = document.getElementById("currentTempHourly");
+
+            const maxTempWeeklyCurrentCity = document.getElementById("maxTempWeeklyCurrentCity");
+
+            const maxWindWeeklyCurrentCity = document.getElementById("maxWindWeeklyCurrentCity");
+
+            const maxTempMondayCurrentCity = document.getElementById("maxTempMondayCurrentCity");
+            const maxTempTuesdayCurrentCity = document.getElementById("maxTempTuesdayCurrentCity");
+            const maxTempWednesdayCurrentCity = document.getElementById("maxTempWednesdayCurrentCity");
+            const maxTempThursdayCurrentCity = document.getElementById("maxTempThursdayCurrentCity");
+            const maxTempFridayCurrentCity = document.getElementById("maxTempFridayCurrentCity");
+            const maxTempSaturdayCurrentCity = document.getElementById("maxTempSaturdayCurrentCity");
+            const maxTempSundayCurrentCity = document.getElementById("maxTempSundayCurrentCity");
+
+            const minTempMondayCurrentCity = document.getElementById("minTempMondayCurrentCity");
+            const minTempTuesdayCurrentCity = document.getElementById("minTempTuesdayCurrentCity");
+            const minTempWednesdayCurrentCity = document.getElementById("minTempWednesdayCurrentCity");
+            const minTempThursdayCurrentCity = document.getElementById("minTempThursdayCurrentCity");
+            const minTempFridayCurrentCity = document.getElementById("minTempFridayCurrentCity");
+            const minTempSaturdayCurrentCity = document.getElementById("minTempSaturdayCurrentCity");
+            const minTempSundayCurrentCity = document.getElementById("minTempSundayCurrentCity");
+
+
+            const currentCityData = weatherData[currentCityValue + "_daily"];
+            const currentCityDataHourly = weatherData[currentCityValue + "_hourly"];
+
+
+
+            //time.innerHTML = currentCityData.daily.time[0];
+            //weatherCode.innerHTML = currentCityData.daily.weather_code[0];
+            currentCity.innerHTML = currentCityValue.charAt(0).toUpperCase() + currentCityValue.slice(1);
+
+            currentTempHourly.innerHTML = currentCityDataHourly.hourly.temperature_2m[0] + "°C";
+            currentWindHourly.innerHTML = currentCityDataHourly.hourly.wind_speed_10m[0] + "km/h";
+
+            maxTempWeeklyCurrentCity.innerHTML = Math.max.apply(null, currentCityData.daily.temperature_2m_max) + "°C";
+
+            maxWindWeeklyCurrentCity.innerHTML = Math.max.apply(null, currentCityData.daily.wind_speed_10m_max) + "km/h";
+
+
+
+            maxTempMondayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_max[0]+ "°C";
+            maxTempTuesdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_max[1]+ "°C";
+            maxTempWednesdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_max[2]+ "°C";
+            maxTempThursdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_max[3]+ "°C";
+            maxTempFridayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_max[4]+ "°C";
+            maxTempSaturdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_max[5]+ "°C";
+            maxTempSundayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_max[6]+ "°C";
+
+            minTempMondayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[0]+ "°C";
+            minTempTuesdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[1]+ "°C";
+            minTempWednesdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[2]+ "°C";
+            minTempThursdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[3]+ "°C";
+            minTempFridayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[4]+ "°C";
+            minTempSaturdayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[5]+ "°C";
+            minTempSundayCurrentCity.innerHTML = currentCityData.daily.temperature_2m_min[6]+ "°C";
+            let counter = 0;
+            document.querySelectorAll("[id^=wc-]").forEach(image => {
+                        //const cityName = image.id.replace('wc-','');
+                        const cityData = weatherData[currentCityValue + "_daily"]
+                        //console.log(counter);
+                        const weatherCode = cityData.daily.weather_code[counter];
+                        counter++;
+                        console.log(weatherCode);
+                        
+                        let imagePath;
+
+                        if (weatherCode === 1) {
+                            imagePath = "../images/sunblack.png";
+                        } else if (weatherCode >= 2 && weatherCode <= 2) {
+                            imagePath = "../images/sleet.png";
+                        } else if (weatherCode >= 3 && weatherCode <= 3) {
+                            imagePath = "../images/frost.png";
+                        } else if (weatherCode >= 61 && weatherCode <= 61) {
+                            imagePath = "../images/cloudy.png";
+                        }else {
+                                    imagePath = "../images/cloud_gust.png";
+                            }
+
+                        image.src = imagePath;
+
+
+                    });
+
+        });
+    </script>
+</head>
+<body>
+    <main class="columns is-multiline box">
+        <div class="column is-3">
+            <figure class="image">
+                <img src="../images/logo.png"/>
+            </figure>
+        </div>
+        <div class="column is-5 has-text-centered has-text-black">
+             <h1 class="title is-1 has-text-black has-text-centered mt-6 has-text-weight-bold">City Focus</h1>
+             <p class="subtitle is-5 has-text-black has-text-centered has-text-weight-bold"><span id="currentCity"></span></p>
+        </div>
+        <div class="column is-4 mt-6 is-fullheight">
+            <section class="card has-text-centered has-background-black">
+              <header class="card-header has-text-white">
+                <p class="card-header-title is-centered has-text-white"> Right Now</p>
+              </header>
+              <div class="card-content has-text-white is-flex">               
+                <p class= "is-flex-grow-1 has-text-left"><span id="currentTempHourly"></span></p> 
+                <p class="has-text-right"><span id="currentWindHourly"></span></p>                               
+              </div>
+              <footer class="card-footer">
+              </footer>
+            </section>
+         </div>
+        <div class="column is-4">
+            <figure class="image">
+                <img src="../images/sun.png" class="is-50x50"/>
+            </figure>
+        </div>
+        <div class="column is-3 mt-6">
+            <section class="card has-text-centered has-background-black">
+              <header class="card-header has-text-white">
+                <p class="card-header-title is-centered has-text-white"> Max Temp</p>
+              </header>
+              <div class="card-content has-text-white">
+                <p><span id="maxTempWeeklyCurrentCity"></span></p>
+              </div>
+              <footer class="card-footer">
+              </footer>
+            </section>
+         </div>
+         <div class="column is-3 mt-6">
+            <section class="card has-text-centered has-background-black">
+              <header class="card-header has-text-white">
+                <p class="card-header-title is-centered has-text-white"> Max Wind</p>
+              </header>
+              <div class="card-content has-text-white">
+                <p><span id="maxWindWeeklyCurrentCity"></span></p>
+              </div>
+              <footer class="card-footer">
+              </footer>
+            </section>
+         </div>
+         <div class="container">
+            <div class="columns is-multiline box mb-6 ">
+                <div class="column is-one-seventh is-centered">
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Monday</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img id = "wc-monday" src="../images/sunblack.png">
+                            </figure>
+                         </div>
+                    <div class="card-content has-text-white is-flex">               
+                        <p class= "is-flex-grow-1 has-text-left"><span id="minTempMondayCurrentCity"></span></p> 
+                        <p class="has-text-right ml-4"><span id="maxTempMondayCurrentCity"></span></p>                               
+                    </div>
+                    <footer class="card-footer">
+                    </footer>
+                    </section>
+                </div>
+                <div class="column is-one-seventh is-centered">
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Tuesday</p>
+                        </header>
+                         <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img id = "wc-tuesday" src="../images/sunblack.png">
+                            </figure>
+                         </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="minTempTuesdayCurrentCity"></span></p> 
+                            <p class="has-text-right ml-4"><span id="maxTempTuesdayCurrentCity"></span></p>                               
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </div>
+                <div class="column is-one-seventh is-centered">
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Wednesday</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img id = "wc-wednesday" src="../images/sunblack.png">
+                            </figure>
+                         </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="minTempWednesdayCurrentCity"></span></p> 
+                            <p class="has-text-right ml-4"><span id="maxTempWednesdayCurrentCity"></span></p>                               
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </div>  
+                <div class="column is-one-seventh is-centered">
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Thursday</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img id = "wc-thursday" src="../images/sunblack.png">
+                            </figure>
+                        </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="minTempThursdayCurrentCity"></span></p> 
+                            <p class="has-text-right ml-4"><span id="maxTempThursdayCurrentCity"></span></p>                               
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </div>  
+                <div class="column is-one-seventh is-centered">
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Friday</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img id = "wc-friday" src="../images/sunblack.png">
+                            </figure>
+                        </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="minTempFridayCurrentCity"></span></p> 
+                            <p class="has-text-right ml-4"><span id="maxTempFridayCurrentCity"></span></p>                               
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </div>  
+                <div class="column is-one-seventh is-centered">
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Saturday</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img id = "wc-saturday" src="../images/sunblack.png">
+                            </figure>
+                        </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="minTempSaturdayCurrentCity"></span></p> 
+                            <p class="has-text-right ml-4"><span id="maxTempSaturdayCurrentCity"></span></p>                               
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </div>  
+                <div class="column is-one-seventh is-centered">
+                    <section class="card has-text-centered has-background-black">
+                        <header class="card-header has-text-white">
+                            <p class="card-header-title is-centered has-text-white"> Sunday</p>
+                        </header>
+                        <div class="card-image">
+                            <figure class="image is-20x20"> 
+                                <img id = "wc-sunday" src="../images/sunblack.png">
+                            </figure>
+                        </div>
+                        <div class="card-content has-text-white is-flex">               
+                            <p class= "is-flex-grow-1 has-text-left"><span id="minTempSundayCurrentCity"></span></p> 
+                            <p class="has-text-right ml-4"><span id="maxTempSundayCurrentCity"></span></p> 
+                        </div>
+                        <footer class="card-footer">
+                        </footer>
+                    </section>
+                </div> 
+                 <div class="column is-3 mt-6 is-offset-9">
+                    <a href="index.html">
+                        <section class="card has-text-centered has-background-black">
+                          <div class="card-content has-text-white has-text-weight-bold">
+                            <p>Back</p>
+                          </div>                         
+                        </section>
+                    </a>
+                </div>                  
+             </div>
+        </div>
+
+
+
+    </main>
+    <!--p>The time is <span id="time"></span></p>
+    <p>The weather code is <span id="weatherCode"></span></p-->
+</body>
+</html>
